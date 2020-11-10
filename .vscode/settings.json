@@ -62,7 +62,8 @@
             "name": "WizardGame_Scoreboard1",
             "database": "wizardgame_scoreboard",
             "username": "root",
-            "password": ""
+            "password": "",
+            "connectionTimeout": 100
         }
     ]
 }

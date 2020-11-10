@@ -1,0 +1,15 @@
+[
+  {
+    "Trigger": "updateCalls",
+    "Event": "INSERT",
+    "Table": "scoreboard",
+    "Statement": "SET NEW.SB_Spieler1Call = 2",
+    "Timing": "BEFORE",
+    "Created": null,
+    "sql_mode": "NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION",
+    "Definer": "root@localhost",
+    "character_set_client": "utf8mb4",
+    "collation_connection": "utf8mb4_unicode_ci",
+    "Database Collation": "latin1_swedish_ci"
+  }
+]
