@@ -8,13 +8,18 @@
 
 //Einfügen von Klassen und Bibliotheken
 #include <Windows.h>
+#include <winuser.h> 
 #include <Commctrl.h>
 #include <iostream>
 #include <tchar.h>
+#include <iostream>
+
+using namespace std;
 
 //Definieren von Button Values
 #define BTN_BUTTON1 1000 //StartButton
 #define BTN_BUTTON2 2000 //ExitButton
+#define RegisterClassEx
 #define WM_COMMAND 273
 
 //Erstellen Buttons und Verwaltung Tastendruck
@@ -49,8 +54,23 @@ LRESULT CALLBACK WindowProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
     CreateWindowEx(WS_EX_CLIENTEDGE, TEXT("Edit"), TEXT("P2"),
                    WS_CHILD | WS_VISIBLE, 800, 50, 140,
                    20, hWnd, NULL, NULL, NULL);
+  }
+  case WM_COMMAND:
+  {
+    //Start Button Pressed
+    if (wParam == BTN_BUTTON1)
+    {
 
-    return 0;
+    }
+
+    //Quit Button Pressed
+    if (wParam == BTN_BUTTON2)
+    {
+      if (MessageBox(hWnd, L"Are you sure?", L"EXIT", MB_OKCANCEL) == IDOK)
+      {
+        DestroyWindow(hWnd);
+      }
+    }
   }
   case WM_PAINT:
   {
@@ -95,6 +115,16 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevIns, LPSTR lpszArgument, 
   {
     TranslateMessage(&msg);
     DispatchMessage(&msg);
+  }
+
+  //Registrieren um Nachrichten an Fenster zu senden
+  if (!RegisterClassEx(&wc))
+  {
+    MessageBox(NULL,
+               L"Call to RegisterClassEx failed!",
+               L"Windows Desktop Guided Tour",
+               MB_OK); 
+    return 1;
   }
 
   return 0;
